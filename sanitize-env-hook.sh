@@ -8,11 +8,16 @@ process_env_file() {
   # Copy the .env file to .env.example
   cp "$env_file" "$example_file"
 
-  # Remove secrets but keep port values
-  sed -i '/^[^#]*port=/! s/=.*/=/' "$example_file"
-
-  # Add header note
-  sed -i '1s/^/# generated automatically by .git\/hooks\/pre-commit\n/' "$example_file"
+  # Check OS type and adjust sed syntax accordingly
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS: Use sed with an empty '' argument for in-place editing
+    sed -i '' '/^[^#]*port=/! s/=.*/=/' "$example_file"
+    sed -i '' '1s/^/# generated automatically by .git\/hooks\/pre-commit\n/' "$example_file"
+  else
+    # Linux: Use sed without an argument for in-place editing
+    sed -i '/^[^#]*port=/! s/=.*/=/' "$example_file"
+    sed -i '1s/^/# generated automatically by .git\/hooks\/pre-commit\n/' "$example_file"
+  fi
 
   # Add the real .env file to .gitignore if not already present
   if ! grep -q "^$env_file$" .gitignore; then
