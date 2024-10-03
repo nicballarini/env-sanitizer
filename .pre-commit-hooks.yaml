@@ -1,3 +1,8 @@
+---
+
+# For use with pre-commit.
+# See usage instructions at https://pre-commit.com
+
 -   id: sanitize-env-files
     name: Sanitize .env files and create example versions
     entry: ./sanitize-env-hook.sh
