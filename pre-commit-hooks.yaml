@@ -1,0 +1,6 @@
+# pre-commit-hooks.yaml
+-   id: sanitize-env-files
+    name: Sanitize .env files and create example versions
+    entry: ./sanitize-env-hook.sh  # Path to the script
+    language: script
+    files: '^\.env.*$'  # Regex to match .env and .env.<environment> files
