@@ -17,7 +17,7 @@ This repository provides a custom pre-commit hook that identifies `.env*` files 
     ```yaml
     repos:
       - repo: https://github.com/nicballarini/env-sanitizer
-        rev: main  # or whichever branch/tag you prefer
+        rev: v1.0.0
         hooks:
           - id: sanitize-env-files
     ```
