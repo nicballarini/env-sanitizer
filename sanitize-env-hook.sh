@@ -33,8 +33,11 @@ process_env_file() {
     echo "$env_file" >> .gitignore
   fi
 
-  # Stage the .EXAMPLE file for the commit
+  # Stage the .EXAMPLE file for commit, even if .env file isn't staged
   git add "$example_file"
+
+  # Remove the .env file from staging, so it isn't accidentally committed
+  git rm --cached "$env_file"
 }
 
 # Find all .env files including .env.<environment>, excluding .EXAMPLE files
