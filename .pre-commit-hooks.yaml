@@ -4,7 +4,7 @@
 # See usage instructions at https://pre-commit.com
 
 -   id: sanitize-env-files
-    name: Sanitize .env files and create example versions
-    entry: ./sanitize-env-hook.sh
+    name: sanitize .env files and create example versions
+    entry: ./pre-commit-wrapper.py
     language: script
     files: '^\.env(\..+)?$'  # Updated regex to match .env and .env.<environment>
